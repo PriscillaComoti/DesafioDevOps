@@ -1,0 +1,11 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ESG.InclusaoDiversidade.Tests
+build_property.ProjectDir = /Users/priscillacomoti/Documents/Fiap/2_Ano/Fase_6_Devops/Ativ/Priscilla_Comoti_RM-554564_Fase4_Cap7_VisualStudioMac/ESG.InclusaoDiversidade/ESG.InclusaoDiversidade.Tests/

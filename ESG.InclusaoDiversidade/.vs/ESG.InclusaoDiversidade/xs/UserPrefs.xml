@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{B8B2884E-1762-4D5F-95E2-B7D590B383BD}|https">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument=".dockerignore">
+    <Files>
+      <File FileName="Dockerfile.txt" Line="19" Column="1" />
+      <File FileName=".dockerignore" Line="5" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ESG.InclusaoDiversidade" expanded="True">
+            <Node name="ESG.InclusaoDiversidade" expanded="True">
+              <Node name=".dockerignore" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ESG.InclusaoDiversidade PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

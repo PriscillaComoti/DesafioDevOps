@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{F90B1D98-1295-4332-BA24-D95F9985179D}|https">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.ESG.InclusaoDiversidade.Tests FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ESG.InclusaoDiversidade/appsettings.json">
+    <Files>
+      <File FileName="ESG.InclusaoDiversidade/Program.cs" Line="77" Column="2" />
+      <File FileName="ESG.InclusaoDiversidade/Controllers/HomeController.cs" Line="12" Column="10" />
+      <File FileName="ESG.InclusaoDiversidade/Data/ApplicationDbContext.cs" Line="1" Column="1" />
+      <File FileName="ESG.InclusaoDiversidade/appsettings.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ESG.InclusaoDiversidade" expanded="True">
+            <Node name="ESG.InclusaoDiversidade" expanded="True" selected="True">
+              <Node name="Data" expanded="True" />
+            </Node>
+            <Node name="ESG.InclusaoDiversidade.Tests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ESG.InclusaoDiversidade PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/ESG.InclusaoDiversidade.props" />
+</Project>
