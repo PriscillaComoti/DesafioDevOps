@@ -91,8 +91,48 @@ https://desafiodevops-d5a6e6e6hdabdsdg.brazilsouth-01.azurewebsites.net/
 
 
 
-Prints do funcionamento
 
 
+
+
+
+
+Tecnologias utilizadas
+
+.NET 7 (ASP.NET Core), GitHub Actions (CI/CD), GHCR, Docker & Docker Compose, Azure App Service (Linux), MongoDB, Application Insights, Serilog
+
+
+
+
+
+
+
+
+Seu-projeto/
+├─ Dockerfile
+├─ docker-compose.yml
+├─ Src/ (se você usa essa pasta; caso contrário, mantenha sua estrutura atual)
+├─ readme.md
+├─ .github/
+│ └─ workflows/
+│ ├─ ci.yml
+│ ├─ docker-publish.yml
+│ └─ cd.yml
+├─ .env.example
+└─ docs/
+├─ Documentacao-Projeto-DevOps.md
+├─ Documentacao-Projeto-DevOps.pdf
+└─ evidencias/
+├─ ci-verde.png
+├─ ghcr-image.png
+├─ cd-staging.png
+├─ cd-approve.png
+├─ cd-prod.png
+├─ staging-health.png
+├─ prod-health.png
+├─ compose-ps.png
+├─ ai-live-metrics.png
+├─ ai-kusto.png
+└─ healthcheck-azure.png
 
 
