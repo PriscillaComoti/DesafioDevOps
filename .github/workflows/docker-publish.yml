@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}/api
+  IMAGE_NAME: ghcr.io/${{ toLower(github.repository) }}/api
 
 jobs:
   docker:
