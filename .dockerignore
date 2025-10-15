@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/*.user
+**/*.swp
+**/*.suo
+**/*.DS_Store
+**/.vs/
+**/.idea/
+**/.vscode/
+**/node_modules/
+**/*.TestResult*
+**/TestResults/
+.env
