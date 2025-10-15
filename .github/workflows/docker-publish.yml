@@ -6,6 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
+
   IMAGE_NAME: ghcr.io/${{ toLower(github.repository) }}/api
 
 jobs:
@@ -28,7 +29,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build & Push (multi-platform opcional)
+      - name: Build & Push
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -40,3 +41,4 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
