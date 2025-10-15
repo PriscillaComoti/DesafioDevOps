@@ -1,0 +1,102 @@
+name: CD - Deploy Staging → Approve → Prod
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Tag da imagem do GHCR (default = SHA do commit)"
+        required: false
+        default: ""
+
+env:
+  
+  IMAGE_BASE: ghcr.io/${{ toLower(github.repository) }}/api
+ 
+  APP_NAME_STAGING: esg-api-staging
+  APP_NAME_PROD: esg-api-prod
+
+jobs:
+  deploy_staging:
+    name: Deploy to STAGING
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Definir tag da imagem
+        id: tag
+        run: |
+          if [ -n "${{ github.event.inputs.image_tag }}" ]; then
+            echo "TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
+          else
+            # usa o SHA do commit que acionou o CD
+            echo "TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Mostrar imagem que será implantada
+        run: echo "Usando imagem: ${{ env.IMAGE_BASE }}:${{ steps.tag.outputs.TAG }}"
+
+    
+      - name: Deploy STAGING (Container Image)
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.APP_NAME_STAGING }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_STAGING }}
+          images: ${{ env.IMAGE_BASE }}:${{ steps.tag.outputs.TAG }}
+
+     
+      - name: Smoke test STAGING /health
+        shell: bash
+        run: |
+          URL="https://${{ env.APP_NAME_STAGING }}.azurewebsites.net/health"
+          echo "Testando $URL ..."
+          for i in {1..20}; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || true)
+            if [ "$CODE" = "200" ]; then
+              echo "OK - STAGING saudável (HTTP 200)."
+              exit 0
+            fi
+            echo "Tentativa $i/20 - status $CODE - aguardando 10s..."
+            sleep 10
+          done
+          echo "FALHA: STAGING não respondeu 200 em /health"
+          exit 1
+
+  deploy_prod:
+    name: Deploy to PRODUCTION
+    runs-on: ubuntu-latest
+    needs: deploy_staging
+    environment: production   # <- aplica gate de aprovação do Environment
+    steps:
+      - name: Definir tag da imagem (igual à usada no STAGING)
+        id: tag
+        run: |
+          if [ -n "${{ github.event.inputs.image_tag }}" ]; then
+            echo "TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy PROD (Container Image)
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.APP_NAME_PROD }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PROD }}
+          images: ${{ env.IMAGE_BASE }}:${{ steps.tag.outputs.TAG }}
+
+      - name: Smoke test PROD /health
+        shell: bash
+        run: |
+          URL="https://${{ env.APP_NAME_PROD }}.azurewebsites.net/health"
+          echo "Testando $URL ..."
+          for i in {1..20}; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || true)
+            if [ "$CODE" = "200" ]; then
+              echo "OK - PROD saudável (HTTP 200)."
+              exit 0
+            fi
+            echo "Tentativa $i/20 - status $CODE - aguardando 10s..."
+            sleep 10
+          done
+          echo "FALHA: PROD não respondeu 200 em /health"
+          exit 1
